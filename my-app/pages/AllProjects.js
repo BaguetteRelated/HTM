@@ -1,9 +1,9 @@
 import React from "react"
 import ProjectSubmitted from "../components/ProjectSubmitted"
 
-import styles from "../styles/Supports.module.css"
+import styles from "../styles/AllProjects.module.css"
 
-export default function Supports() {
+export default function AllProjects() {
 
     function upvoteProject(projectId) {
         console.log(projectId)
@@ -41,7 +41,7 @@ export default function Supports() {
     ]
 
     const wrappedProjects = projects.map(project => {
-        return <ProjectSubmitted project={project} upvote={() => upvoteProject(project.id)} />
+        return <ProjectSubmitted key={project.id} project={project} upvote={() => upvoteProject(project.id)} />
     })
 
     return (

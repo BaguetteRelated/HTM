@@ -18,12 +18,12 @@ function Menu() {
     return (
         <div className={styles.menuContainer}>
             <div className={styles.menuItem}>
-                <Link href="/Projects">
+                <Link href="/MyProjects">
                     <a >My projects</a>
                 </Link>
             </div>
             <div className={styles.menuItem}>
-                <Link href="/Supports">
+                <Link href="/AllProjects">
                     <a >My supports</a>
                 </Link>
             </div>

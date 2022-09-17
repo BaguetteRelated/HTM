@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function Projects() {
+export default function MyProjects() {
     return (
         <div>
             My projects I've submitted

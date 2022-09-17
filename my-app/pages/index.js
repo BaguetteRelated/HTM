@@ -20,12 +20,12 @@ export default function Home() {
           Or just willing to send your love to one ?
         </div>
         <div className={styles.buttonContainer}>
-          <Link href="/Supports">
+          <Link href="/AllProjects">
             <a>
               <Button text='Vote' />
             </a>
           </Link>
-          <Link href="/Projects">
+          <Link href="/MyProjects">
             <a>
               <Button text='Submit a project' />
             </a>
