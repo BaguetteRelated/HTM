@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function Projects() {
+export default function Profile() {
     return (
         <div>
             profile page

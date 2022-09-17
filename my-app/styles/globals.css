@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
   background-image: linear-gradient(to right top, #232323, #232427, #23252b, #20262f, #1c2833, #1b2530, #1b222e, #1a1f2b, #1a1821, #161117, #0f090d, #000000);
 }
