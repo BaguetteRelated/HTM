@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
-import Button from '../components/Button.js'
+import { WelcomeButton } from '../components/Button.js'
 import Link from 'next/link'
 
 import styles from '../styles/Home.module.css'
@@ -22,12 +22,12 @@ export default function Home() {
         <div className={styles.buttonContainer}>
           <Link href="/AllProjects">
             <a>
-              <Button text='Vote' />
+              <WelcomeButton text='Vote' />
             </a>
           </Link>
           <Link href="/MyProjects">
             <a>
-              <Button text='Submit a project' />
+              <WelcomeButton text='Submit a project' />
             </a>
           </Link>
         </div>

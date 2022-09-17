@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { VoteButton } from './Button.js'
+
 import styles from '../styles/ProjectSubmitted.module.css'
 
 export default function ProjectSubmitted(props) {
@@ -9,7 +11,7 @@ export default function ProjectSubmitted(props) {
                 <div className={styles.name}>{props.project.name}</div>
             </a>
             <div className={styles.trustLevel}>{props.project.trustLevel}</div>
-            <div className={styles.voteButton}>Vote</div>
+            <VoteButton text='Vote' />
         </div>
     )
 }

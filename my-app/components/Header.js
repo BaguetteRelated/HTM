@@ -39,7 +39,7 @@ function Menu() {
 function Search() {
     return (
         <div className={styles.searchContainer}>
-            <input class={styles.searchInput} type="text" placeholder="Search" />
+            <input className={styles.searchInput} type="text" placeholder="Search" />
         </div>
     )
 }
