@@ -1,5 +1,5 @@
 import React from "react"
-import ProjectSubmitted from "../components/ProjectSubmitted"
+import { ProjectSubmitted } from "../components/ProjectSubmitted"
 
 import styles from "../styles/AllProjects.module.css"
 

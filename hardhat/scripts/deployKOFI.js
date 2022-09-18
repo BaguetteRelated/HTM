@@ -8,19 +8,24 @@ const hre = require("hardhat");
 
 async function main() {
 
-  const [KofiCoinContractFactory, BallotContractFactory] = await Promise.all([
+  const [KofiCoinContractFactory, BallotContractFactory, KofiNFT1155ContractFactory] = await Promise.all([
     hre.ethers.getContractFactory("KofiCoin"),
     hre.ethers.getContractFactory("Ballot"),
+    hre.ethers.getContractFactory("KofiNFT1155")
   ])
 
   const KofiCoinContract = await KofiCoinContractFactory.deploy()
   await KofiCoinContract.deployed()
-  console.log("KofiCoin : ", KofiCoinContract.address);
 
   const BallotContract = await BallotContractFactory.deploy()
   await BallotContract.deployed()
-  console.log("Ballot : ", BallotContract.address);
 
+  const KofiNFT1155Contract = await KofiNFT1155ContractFactory.deploy("")
+  await KofiNFT1155Contract.deployed()
+
+  console.log("KofiCoin : ", KofiCoinContract.address);
+  console.log("Ballot : ", BallotContract.address);
+  console.log("KofiNFT1155 : ", KofiNFT1155Contract.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
