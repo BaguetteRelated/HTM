@@ -1,5 +1,4 @@
-import * as React from 'react'
-
+import React from 'react'
 
 import {
     usePrepareContractWrite,
@@ -7,15 +6,19 @@ import {
     useWaitForTransaction,
 } from 'wagmi'
 
+import { VoteButton, SubmitButton } from './Button.js'
+
 import { ProjectContractAddress, ProjectContractAbi } from '../constants'
 
+import styles from '../styles/ProjectSubmitted.module.css'
+
 export function ProjectToSubmit(props) {
-    const project = {
-        name: "Name of the project",
-        address: "0x7BC2E270b6C8D215A39f46e871Cd3a6499ca81c8",
-        url: "url of the project"
-    }
-    // address url name
+    const [project, setProject] = React.useState({
+        name: "",
+        address: "",
+        url: ""
+    })
+
     const { config } = usePrepareContractWrite({
         addressOrName: ProjectContractAddress,
         contractInterface: ProjectContractAbi,
@@ -24,7 +27,6 @@ export function ProjectToSubmit(props) {
     })
 
     console.log("config : ", config)
-    // console.log("après config")
     const { data, write } = useContractWrite(config)
 
     const { isLoading, isSuccess } = useWaitForTransaction({
@@ -32,9 +34,74 @@ export function ProjectToSubmit(props) {
     })
     console.log(" write, data : ", write, data)
 
+    async function submitProject() {
+        write()
+    }
+
+
+    React.useEffect(() => console.log(project), [project])
+
     return (
-        <div onClick={() => write?.()}>Submit</div>
+        <div className={styles.projectToSubmitContainer}>
+            <div>
+                <input
+                    className={styles.input}
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={project.name}
+                    onChange={event => setProject(old => {
+                        return {
+                            ...old,
+                            name: event.target.value
+                        }
+                    })}
+                />
+            </div>
+            <div>
+                <input
+                    className={styles.input}
+                    type="text"
+                    id="address"
+                    name="address"
+                    value={project.address}
+                    onChange={event => setProject(old => {
+                        return {
+                            ...old,
+                            address: event.target.value
+                        }
+                    })}
+                />
+            </div>
+            <div>
+                <input
+                    className={styles.input}
+                    type="text"
+                    id="url"
+                    name="url"
+                    value={project.url}
+                    onChange={event => setProject(old => {
+                        return {
+                            ...old,
+                            url: event.target.value
+                        }
+                    })}
+                />
+            </div>
+            <SubmitButton text='Submit' onClick={submitProject} />
+        </div>
     )
 }
 
+export function ProjectSubmitted(props) {
+    return (
+        <div className={styles.projectSubmittedContainer}>
+            <a target="_blank" href={props.project.url} rel="noopener noreferrer">
+                <div className={styles.name}>{props.project.name}</div>
+            </a>
+            <div className={styles.trustLevel}>{props.project.trustLevel}</div>
+            <VoteButton text='Vote' />
+        </div>
+    )
+}
 

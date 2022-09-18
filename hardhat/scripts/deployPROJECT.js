@@ -6,7 +6,7 @@
 // global scope, and execute the script.
 const hre = require("hardhat");
 
-const LEARNWEB3MUMBAI = "0x7369A913Df0250eBA07B512361a320422cf63b84"
+const LEARNWEB3MUMBAI = "0x1119e27ccd2a9be3b16c0e4e6d82665c86c8c160"
 
 async function main() {
 
