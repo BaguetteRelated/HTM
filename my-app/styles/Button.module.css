@@ -1,7 +1,7 @@
 .button {
     pointer-events: auto;
     cursor: pointer;
-    background: #e7e7e7;
+    background: #464DBE;
     border: none;
     padding: 5px 10px;
     margin: 0;
@@ -23,10 +23,9 @@
 .buttonPan {
     composes: button;
     font-weight: 700;
-    border: 2px solid #000;
-    border-radius: 3rem;
+    border-radius: 25px;
     overflow: hidden;
-    color: #fff;
+    color: white;
 }
 
 .buttonPan span {

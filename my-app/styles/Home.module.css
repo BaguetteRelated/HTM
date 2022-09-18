@@ -1,9 +1,11 @@
-.welcomeDiv {}
+
 
 .homeContainer {
-  margin: 80px 0;
+  margin-top: 130px;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-evenly
 
 }
 
@@ -11,14 +13,16 @@
   margin: 40px 0;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  
 }
-
+.mainTitle{
+font-size: 60px;
+}
 .welcomeImg {}
 
 .tagline {}
 
 .img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 700px;
+  height: auto;
 }

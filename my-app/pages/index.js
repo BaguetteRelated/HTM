@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className={styles.homeContainer}>
       <div className={styles.welcomeDiv}>
-        <h1>Create or Support</h1>
+        <h1 className={styles.mainTitle}>Create or Support</h1>
         <div className={styles.tagline}>
           Do you have a project that you care ?
         </div>
@@ -33,7 +33,7 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.welcomeImg}>
-        <img className={styles.img} src='trust_small.jpeg' />
+        <img className={styles.img} src='imageproject.png' />
       </div>
       {/* main page
       <ConnectButton /> */}
