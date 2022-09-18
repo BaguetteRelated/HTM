@@ -11,6 +11,12 @@
 - npx hardhat compile (pour compiler)
 - npx hardhat run scripts/deploy.js --network matic (compile et déploie sur mumbai)
 
+export const ProjectContractAddress = "0xeC5330Feef9939F5995FCD49e75C4784d47d5695"
+const LEARNWEB3MUMBAI = "0x4893d7c55b782A7ecD2453280553c5f21633257D"
+
+passphrase des wallets :
+test test test test test test test test test test test test
+
 hardhat 0 :
 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 pas de nft
