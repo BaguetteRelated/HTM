@@ -1,20 +1,24 @@
-/// @title Voting with delegation.
+pragma solidity ^0.8.10;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
 contract Ballot {
     // This declares a single voter.
     struct Voter {
-        uint weight; // weight is accumulated by rank
-        bool voted; // if true, that person already voted
-        uint vote; // index of the voted proposal
-        bool choice; // voter choice to approve or not
+        uint weight; // weight is accumulated by rank on LW3
+        bool nVote; // number of time this user voted on proposals
     }
 
     // This is a type for a single proposal.
     struct Proposal {
-        address contractAddress; // short name (up to 32 bytes)
+        // address contractAddress;
         string url;
         uint totalVoters; // number of accumulated votes
         uint totalApproveWeight;
-        uint totalNotApproveWeight;
+        mapping (address => bool ) public hasVoted;
+        
     }
 
     address public Owner;
@@ -24,45 +28,35 @@ contract Ballot {
     mapping(address => Voter) public voters;
 
     // A dynamically-sized array of `Proposal` structs.
-    Proposal[] public proposals;
+    mapping(address => Proposal) public proposals
 
     /// Create a new ballot to choose one of `proposalNames`.
-    constructor(bytes32[] memory proposalNames) {
+    constructor() {
         Owner = msg.sender;
-        voters[chairperson].weight = 1;
-
-        // For each of the provided proposal names,
-        // create a new proposal object and add it
-        // to the end of the array.
-        for (uint i = 0; i < proposalNames.length; i++) {
-            // `Proposal({...})` creates a temporary
-            // Proposal object and `proposals.push(...)`
-            // appends it to the end of `proposals`.
-            proposals.push(Proposal({name: proposalNames[i], voteCount: 0}));
+        voters[owner].weight = 1;
         }
     }
 
-    // Give `voter` the right to vote on this ballot.
-    // May only be called by `chairperson`.
-    function giveRightToVote(address voter) external {
-        require(!voters[voter].voted, "The voter already voted.");
-        require(voters[voter].weight == 0);
-        voters[voter].weight = 1;
+function addProposal(address memory contractAddress, string memory url, ) public {
+    proposals(contractAddress) = Proposal(url, 0, 0);
+}
+
+    function getVotingWeight(address msg.sender) public {
+      require(voters[voter].weight == 0);
+      require(,"The voter already voted.");
+      voters[voter].weight = A DEFINIR (en fonction de l'avancement LW3);
     }
 
-    function updateWheight(address voter) public {}
-
-    function vote(uint proposal) external {
-        Voter storage sender = voters[msg.sender];
-        require(sender.weight != 0, "Has no right to vote");
-        require(!sender.voted, "Already voted.");
-        sender.voted = true;
-        sender.vote = proposal;
-
-        // If `proposal` is out of the range of the array,
-        // this will throw automatically and revert all
-        // changes.
-        proposals[proposal].voteCount += sender.weight;
+    function vote(address memory contractAddress, bool approve) external {
+        require(proposal(contractAddress).hasVoted(msg.sender) == false, "Already voted !");
+        require(voters(msg.sender).weight != 0, "Has no right to vote");
+        proposal(contractAddress).hasVoted(msg.sender) = true;
+        voters(msg.sender).nvote++;
+        if (approve == true){
+            voter
+            proposals(contractAddress).totalApproveWeight += voters(msg.sender).weight;
+        }
+        proposals(contractAddress).totalVoters += voters(msg.sender).weight;
     }
 
     /// @dev Computes the winning proposal taking all
@@ -77,7 +71,7 @@ contract Ballot {
         }
     }
 
-    function getBookId() public view returns (uint) {
-        return book.book_id;
+    function getProposalData() public view returns (uint) {
+        return ;
     }
 }
