@@ -1,13 +1,44 @@
 import React from "react"
 import { ProjectSubmitted } from "../components/ProjectSubmitted"
 
+import {
+    usePrepareContractWrite,
+    useContractWrite,
+    useWaitForTransaction,
+    readContracts,
+} from 'wagmi'
+
 import styles from "../styles/AllProjects.module.css"
+
+import { ProjectContractAddress, ProjectContractAbi } from '../constants'
+
 
 export default function AllProjects() {
 
+
+    const { config, error } = usePrepareContractWrite({
+        addressOrName: ProjectContractAddress,
+        contractInterface: ProjectContractAbi,
+        functionName: 'proposalCount'
+    })
+
+    const { data, write } = useContractWrite(config)
+
+    const { isLoading, isSuccess } = useWaitForTransaction({
+        hash: data?.hash,
+    })
+    console.log(" write : ", write)
+
+
     function upvoteProject(projectId) {
-        console.log(projectId)
+        // console.log(projectId)
     }
+
+    React.useEffect(() => {
+        write?.()
+        console.log(data)
+    }
+        , [])
 
     const projects = [
         {
