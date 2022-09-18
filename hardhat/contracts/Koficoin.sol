@@ -18,6 +18,6 @@ contract KofiCoin is ERC20, ERC20Burnable, Ownable{
     }
 
     function issueToken() public{
-        _mint(msg.sender, 2*10** decimals());
+        _mint(msg.sender, 2 * 10 ** decimals());
     }
 }
