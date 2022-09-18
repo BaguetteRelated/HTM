@@ -11,7 +11,27 @@
 - npx hardhat compile (pour compiler)
 - npx hardhat run scripts/deploy.js --network matic (compile et déploie sur mumbai)
 
-#addresse des contracts déployés à 3h du mat :
-- KofiCoin :  0x51940154B1641e81584ed1cf6C123A5889E22842
-- Ballot :  0x7eB382F37bAC3F3Cc0C909191090628d545c6447
-- KofiNFT1155 :  0x592977B96aA4FC9A83b4f31d1F33eBc0A7654aF0
+hardhat 0 :
+0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+pas de nft
+
+
+hardhat 1 :
+0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+1 nft
+id :0
+
+hardhat 2 :
+0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+1 nft
+id :1
+
+hardhat 3 :
+0x90F79bf6EB2c4f870365E785982E1f101E93b906
+1 nft
+id :2
+
+hardhat 4 :
+0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65
+1 nft
+id :3
