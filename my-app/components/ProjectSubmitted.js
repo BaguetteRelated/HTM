@@ -1,15 +1,24 @@
 import React from 'react'
 
+import {
+    useAccount
+} from "wagmi";
+
+import { ethers } from "ethers";
+
 import { VoteButton, SubmitButton } from './Button.js'
+
+import { ProjectContractAddress, ProjectContractAbi } from '../constants'
+
+console.log(ProjectContractAddress, ProjectContractAbi)
 
 import styles from '../styles/ProjectSubmitted.module.css'
 
-
 // function addProposal(
 //     address contractAddress,
-//     string memory name,
-//     string memory url
-// ) public
+//     string memory url,
+//     string memory name
+// ) public {
 
 export function ProjectToSubmit(props) {
     const [project, setProject] = React.useState({
@@ -18,9 +27,28 @@ export function ProjectToSubmit(props) {
         url: "url of the project"
     })
 
-    function submitProject() {
-        console.log("project submitted")
+    const {
+        data: addProposalData,
+        write: addProposal,
+        isLoading: isAddProposalLoading,
+        isSuccess: isAddProposalSucceded,
+        error: AddProposalError,
+    } = useContractWrite({
+        addressOrName: ProjectContractAddress,
+        contractInterface: ProjectContractAbi,
+        functionName: "addProposal",
+    });
+
+
+
+    async function submitProject() {
+        console.log("pwett")
+        await addProposal({ args: [project.address, project.url, project.name] })
+        console.log("pwetttttttttttttt")
+        // Check TX for mint function
+
     }
+
 
     React.useEffect(() => console.log(project), [project])
 

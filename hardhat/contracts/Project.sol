@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./ILW3NFT.sol";
 
-contract Vote is Ownable {
+contract Project is Ownable {
     // This declares a single voter.
     struct Voter {
         uint weight; // weight is accumulated by rank on LW3.
@@ -42,12 +42,15 @@ contract Vote is Ownable {
 
     function addProposal(
         address contractAddress,
-        string memory name,
-        string memory url
+        string memory url,
+        string memory name
     ) public {
         //  require(proposals[contractAddress].address == null , "Contract has already been proposed");
         require(bytes(url).length > 0, "Dont leave the url empty!");
-        require(lw3nft.balanceOf(msg.sender, 1), "You dont have an lw3 grade");
+        require(
+            lw3nft.balanceOf(msg.sender, 1) > 0,
+            "You dont have an lw3 grade"
+        );
         // Setting the proposal to an index in the mapping, to access them easily;
         Proposal storage r = proposals[proposalCount++];
         // Setting the proposal values;
@@ -84,20 +87,4 @@ contract Vote is Ownable {
         // Add
         proposals[contractIndex].totalVoters += voters[msg.sender].weight;
     }
-
-    /// @dev Computes the winning proposal taking all
-    /// previous votes into account.
-    // function proposalResult() public view returns (uint winningProposal_) {
-    //     uint winningVoteCount = 0;
-    //     for (uint p = 0; p < proposals.length; p++) {
-    //         if (proposals[p].voteCount > winningVoteCount) {
-    //             winningVoteCount = proposals[p].voteCount;
-    //             winningProposal_ = p;
-    //         }
-    //     }
-    // }
-
-    // function getProposalData(address Struct) public view returns (struct) {
-    //   return Proposal[Struct];
-    // }
 }
