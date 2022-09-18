@@ -14,17 +14,14 @@ async function main() {
     hre.ethers.getContractFactory("KofiNFT1155")
   ])
 
-  const [KofiCoinContract, BallotContract, KofiNFT1155Contract] = await Promise.all([
-    KofiCoinContractFactory.deploy(),
-    BallotContractFactory.deploy(),
-    KofiNFT1155ContractFactory.deploy()
-  ])
+  const KofiCoinContract = await KofiCoinContractFactory.deploy()
+  await KofiCoinContract.deployed()
 
-  await Promise.all([
-    KofiCoinContractFactory.deployed(),
-    BallotContractFactory.deployed(),
-    KofiNFT1155ContractFactory.deployed()
-  ])
+  const BallotContract = await BallotContractFactory.deploy()
+  await BallotContract.deployed()
+
+  const KofiNFT1155Contract = await KofiNFT1155ContractFactory.deploy("")
+  await KofiNFT1155Contract.deployed()
 
   console.log("KofiCoin : ", KofiCoinContract.address);
   console.log("Ballot : ", BallotContract.address);
