@@ -6,7 +6,6 @@ import Link from 'next/link'
 
 import styles from '../styles/Home.module.css'
 
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function Home() {
   return (
@@ -21,7 +20,7 @@ export default function Home() {
         </div>
         <div className={styles.buttonContainer}>
           <Link href="/AllProjects">
-            <a>
+            <a className={styles.paddButton}>
               <WelcomeButton text='Vote' />
             </a>
           </Link>

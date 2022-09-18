@@ -8,8 +8,10 @@ export default function Layout({ children }) {
     return (
         <>
             <div className={styles.appContainer}>
-                <Header />
-                <main>{children}</main>
+                <div className={styles.appContainer2}>
+                    <Header />
+                    <main>{children}</main>
+                </div>
             </div>
         </>
 

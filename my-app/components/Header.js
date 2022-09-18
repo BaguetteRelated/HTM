@@ -3,6 +3,7 @@ import Link from 'next/link'
 import styles from '../styles/Header.module.css'
 
 import '@rainbow-me/rainbowkit/styles.css';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 function Home() {
     return (
@@ -36,10 +37,10 @@ function Menu() {
     )
 }
 
-function Search() {
+function Connect() {
     return (
-        <div className={styles.searchContainer}>
-            <input className={styles.searchInput} type="text" placeholder="Search" />
+        <div className={styles.connectContainer}>
+            <ConnectButton />
         </div>
     )
 }
@@ -49,7 +50,7 @@ export default function Header() {
         <div className={styles.headerContainer}>
             <Home />
             <Menu />
-            <Search />
+            <Connect />
         </div>
     )
 }
