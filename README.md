@@ -1,21 +1,22 @@
-- telecharger le repo
-- ouvrir un terminal dans le repo
+- donwload the repo
+- open a console in the repo
 
-#lancer l'app :
+#launch  app:
 - cd my-app
 - npm run dev
 
-#deployer les contracts
+#deplo contract
 - cd hardhat
 - npx hardhat clean
 - npx hardhat compile (pour compiler)
 - npx hardhat run scripts/deploy.js --network matic (compile et déploie sur mumbai)
 
+#variable
 export const ProjectContractAddress = "0xeC5330Feef9939F5995FCD49e75C4784d47d5695"
 
 const LEARNWEB3MUMBAI = "0x4893d7c55b782A7ecD2453280553c5f21633257D"
 
-passphrase des wallets :
+#passphrase of the wallets to test project:
 test test test test test test test test test test test test
 
 hardhat 0 :
