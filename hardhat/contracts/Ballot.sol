@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
+import "./ILW3NFT.sol";
 
 contract Vote is Ownable {
     // This declares a single voter.
@@ -28,17 +29,22 @@ contract Vote is Ownable {
     // `Proposal` mapping uint representing the index for each proposal.
     mapping(uint => Proposal) public proposals;
 
+    // Whitelist contract instance
+    ILW3NFT lw3nft;
 
-    constructor() {
+
+    constructor(address lw3nftContract) {
         // setting the owner and proposalCount;
         address owner = msg.sender;
         voters[owner].weight = 1;
         proposalCount = 0;
+        lw3nft = ILW3NFT(lw3nftContract);
         }
 
     function addProposal(address contractAddress, string memory url ) public {
       //  require(proposals[contractAddress].address == null , "Contract has already been proposed");
         require(bytes(url).length > 0, "Dont leave the url empty!");
+        require(lw3nft.balanceOf(msg.sender, 1), "You dont have an lw3 grade");
         // Setting the proposal to an index in the mapping, to access them easily;
         Proposal storage r = proposals[proposalCount++];
         // Setting the proposal values;
