@@ -47,10 +47,13 @@ contract Project is Ownable {
     ) public {
         //  require(proposals[contractAddress].address == null , "Contract has already been proposed");
         require(bytes(url).length > 0, "Dont leave the url empty!");
-        require(
-            lw3nft.balanceOf(msg.sender, 1) > 0,
-            "You dont have an lw3 grade"
-        );
+
+        // DELETED BY FABIEN AT sunday 15:57 FOR TESTING
+        // require(
+        //     lw3nft.balanceOf(msg.sender, 1) > 0,
+        //     "You dont have an lw3 grade"
+        // );
+
         // Setting the proposal to an index in the mapping, to access them easily;
         Proposal storage r = proposals[proposalCount++];
         // Setting the proposal values;

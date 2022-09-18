@@ -380,6 +380,7 @@ export const KofiCoinContractAbi = [
 ]
 
 export const ProjectContractAddress = "0x23A7E3182A7477b61bb446eAd5aA7A38Fa75F1f1"
+export const ProjectContractAddressTest = "0x09854663866073C76fc969A06AF0fe908730Edb6"
 export const ProjectContractAbi = [
     {
         "inputs": [
