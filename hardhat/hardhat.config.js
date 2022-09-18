@@ -6,6 +6,7 @@ module.exports = {
   defaultNetwork: "matic",
   networks: {
     hardhat: {
+      chainId: 1337
     },
     matic: {
       url: "https://rpc-mumbai.maticvigil.com",
