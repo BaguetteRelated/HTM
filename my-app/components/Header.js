@@ -20,12 +20,12 @@ function Menu() {
         <div className={styles.menuContainer}>
             <div className={styles.menuItem}>
                 <Link href="/MyProjects">
-                    <a >My projects</a>
+                    <a >Submit a project</a>
                 </Link>
             </div>
             <div className={styles.menuItem}>
                 <Link href="/AllProjects">
-                    <a >My supports</a>
+                    <a >All project</a>
                 </Link>
             </div>
             <div className={styles.menuItemEnd}>

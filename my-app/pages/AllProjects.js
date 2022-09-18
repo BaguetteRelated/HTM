@@ -5,37 +5,43 @@ import {
     usePrepareContractWrite,
     useContractWrite,
     useWaitForTransaction,
-    readContracts,
+    useContractRead ,
 } from 'wagmi'
 
 import styles from "../styles/AllProjects.module.css"
 
 import { ProjectContractAddress, ProjectContractAbi } from '../constants'
 
+export function GetProposal() {
+    const { data, error } = useContractRead({
+        addressOrName: ProjectContractAddress,
+        contractInterface: ProjectContractAbi,
+        functionName: 'proposalCount'
+    })
+  
+    return (
+      <div>
+        <p>{data}</p>
+      </div>
+    )
+  }
 
 export default function AllProjects() {
 
 
-    const { config, error } = usePrepareContractWrite({
+    const { data, error } = useContractRead({
         addressOrName: ProjectContractAddress,
         contractInterface: ProjectContractAbi,
         functionName: 'proposalCount'
     })
 
-    const { data, write } = useContractWrite(config)
-
-    const { isLoading, isSuccess } = useWaitForTransaction({
-        hash: data?.hash,
-    })
-    console.log(" write : ", write)
-
+    console.log(" data : ", data)
 
     function upvoteProject(projectId) {
         // console.log(projectId)
     }
 
     React.useEffect(() => {
-        write?.()
         console.log(data)
     }
         , [])
@@ -77,8 +83,10 @@ export default function AllProjects() {
 
     return (
         <div className={styles.ProjectsContainer}>
+            <GetProposal/>
             {wrappedProjects}
         </div>
+
     )
 }
 

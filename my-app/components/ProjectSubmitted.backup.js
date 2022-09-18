@@ -1,41 +1,46 @@
 import React from 'react'
 
-import {
-    usePrepareContractWrite,
-    useContractWrite,
-    useWaitForTransaction,
-} from 'wagmi'
+import { useContract, useSigner } from 'wagmi'
+
+import { ethers } from "ethers"
 
 import { VoteButton, SubmitButton } from './Button.js'
 
 import { ProjectContractAddress, ProjectContractAbi } from '../constants'
 
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
 import styles from '../styles/ProjectSubmitted.module.css'
+
+// function addProposal(
+//     address contractAddress,
+//     string memory url,
+//     string memory name
+// ) public {
 
 export function ProjectToSubmit(props) {
     const [project, setProject] = React.useState({
-        name: "",
-        address: "",
-        url: ""
+        name: "Name of the project",
+        address: "0x7BC2E270b6C8D215A39f46e871Cd3a6499ca81c8",
+        url: "url of the project"
     })
 
-    const { config } = usePrepareContractWrite({
-        addressOrName: ProjectContractAddress,
-        contractInterface: ProjectContractAbi,
-        functionName: 'addProposal',
-        args: [project.address, project.url, project.name]
-    })
+    const signer = useSigner();
+    console.log("signer : ", signer)
 
-    console.log("config : ", config)
-    const { data, write } = useContractWrite(config)
 
-    const { isLoading, isSuccess } = useWaitForTransaction({
-        hash: data?.hash,
-    })
-    console.log(" write, data : ", write, data)
 
     async function submitProject() {
-        write()
+        console.log("pwett")
+
+        const contract = useContract({
+            addressOrName: ProjectContractAddress,
+            contractInterface: ProjectContractAbi,
+            signerOrProvider: signer.data,
+        })
+        console.log("pwetttttttttttttt")
+        // Check TX for mint function
+
     }
 
 
@@ -49,7 +54,6 @@ export function ProjectToSubmit(props) {
                     type="text"
                     id="name"
                     name="name"
-                    placeholder='project name'
                     value={project.name}
                     onChange={event => setProject(old => {
                         return {
@@ -65,7 +69,6 @@ export function ProjectToSubmit(props) {
                     type="text"
                     id="address"
                     name="address"
-                    placeholder='contract address'
                     value={project.address}
                     onChange={event => setProject(old => {
                         return {
@@ -81,7 +84,6 @@ export function ProjectToSubmit(props) {
                     type="text"
                     id="url"
                     name="url"
-                    placeholder='contract website'
                     value={project.url}
                     onChange={event => setProject(old => {
                         return {
