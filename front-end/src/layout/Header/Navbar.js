@@ -1,20 +1,94 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HiMenu, HiOutlineX } from 'react-icons/hi';
 
 import OffCanvasMenu from './OffCanvasMenu';
-import {
-  navHomeOne,
-  navHomeTwo,
-  navCompanyLinks,
-  navCompanyPage,
-} from '../../utils/data';
 import dynamic from 'next/dynamic';
 
-const Navbar = ({ navDark, classOption }) => {
-  const [scroll, setScroll] = useState(0);
+
+const Navbar = ({walletConnected,account, navDark, connect, classOption }) => {
   const [headerTop, setHeaderTop] = useState(0);
+  const [scroll, setScroll] = useState(0);
+
+      const renderMenu = () => {
+        // If wallet is not connected, return a button which allows them to connect their wllet
+        if (!walletConnected) {
+          return (
+            
+            <ul className="nav col-12 col-md-auto justify-content-center main-menu">
+              <li>
+                <Link href="/">
+                  <a className="nav-link">Home</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="about-us">
+                  <a className="nav-link">About</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="process">
+                  <a className="nav-link">Process</a>
+                </Link>
+              </li>
+
+              
+            </ul>
+           
+          );
+        } else {
+          return (
+            <ul className="nav col-12 col-md-auto justify-content-center main-menu">
+              <li>
+                <Link href="/">
+                    <a className="nav-link">Home</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="submit">
+                  <a className="nav-link">Submit a project</a>
+                  </Link>
+              </li>
+              <li>
+                <Link href="projects">
+                  <a className="nav-link">My projects</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="profile">
+                  <a className="nav-link">My profile</a>
+                </Link>
+              </li>
+          </ul>       
+          );
+        }
+      };
+
+      const renderButton = () => {
+        // If wallet is not connected, return a button which allows them to connect their wllet
+        if (!walletConnected) {
+          return (
+            <Link href="#">
+              <a onClick={connect} className="btn btn-primary" >Connect</a>
+            </Link>
+          );
+        } else {
+          if (account){
+            return (
+              <Link href="#">
+                <a onClick={connect} className="btn btn-warning disabled" >{account.slice(0,8)}</a>
+              </Link>
+            );} else {
+              return (
+                <Link href="#">
+                  <a onClick={connect} className="btn btn-warning disabled" >no account found</a>
+                </Link>
+              );
+            }
+          
+        }
+      };
 
   useEffect(() => {
     const stickyheader = document.querySelector('.main-header');
@@ -28,6 +102,7 @@ const Navbar = ({ navDark, classOption }) => {
   const handleScroll = () => {
     setScroll(window.scrollY);
   };
+  
 
   return (
     <header
@@ -77,44 +152,11 @@ const Navbar = ({ navDark, classOption }) => {
           </button>
           <div className="clearfix"></div>
           <div className="collapse navbar-collapse justify-content-center">
-            <ul className="nav col-12 col-md-auto justify-content-center main-menu">
-              <li>
-                <Link href="/">
-                  <a className="nav-link">Home</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="about-us">
-                  <a className="nav-link">About</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="process">
-                  <a className="nav-link">Process</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="projectsall">
-                  <a className="nav-link">All projects</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="projects">
-                  <a className="nav-link">My projects</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="profile">
-                  <a className="nav-link">My profile</a>
-                </Link>
-              </li>
-            </ul>
+            {renderMenu()}
           </div>
 
           <div className="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block">
-            <Link href="request-demo">
-              <a className="btn btn-primary">Connect</a>
-            </Link>
+              {renderButton()}
           </div>
 
           <div

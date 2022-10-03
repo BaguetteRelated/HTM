@@ -1,10 +1,27 @@
 
 import Image from 'next/image'
-import Link from 'next/link'
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import ModalVideo from 'react-modal-video';
 
-const HeroSectionEleven = () => {
+
+const HeroSectionEleven = ({walletConnected, connect}) => {
+
+
+
+  const renderButton = () => {
+        // If wallet is not connected, return a button which allows them to connect their wllet
+        if (!walletConnected) {
+          return (
+            <a onClick={connect} className="btn rounded-pill btn-primary me-3" > Connect your wallet</a>
+          );
+        } else {
+          return (
+            <a onClick={connect} className="btn rounded-pill btn-warning me-3 disabled" > Already connectet</a>
+          );
+        }
+      };
+
+
   const [isOpen, setOpen] = useState(false);
   return (
     <section className="hero-eleven bg-dark-black pt-120">
@@ -27,12 +44,7 @@ const HeroSectionEleven = () => {
                 You don't. Our community do the job for you. We have descentralized the trust. 
               </p>
               <div className="action-btns mt-5 align-items-center d-block d-sm-flex d-lg-flex d-md-flex">
-                <Link href="/request-demo" >
-                 <a className="btn rounded-pill btn-primary me-3"> Connect your wallet</a>
-                </Link>
-                <Link href="/process" >
-                 <a className="btn rounded-pill btn-primary me-3"> How it works</a>
-                </Link>
+              {renderButton()}
               </div>
             </div>
           </div>
